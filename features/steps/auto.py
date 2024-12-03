@@ -1,10 +1,11 @@
+
 from behave import given, when, then
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+import time
 
 @given(u'Entro na Página de contato do Instituto Joga Junto')
 def step_entro_na_pagina(context):
@@ -28,3 +29,9 @@ def step_envio_mensagem(context):
         EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[2]/section[9]/div[1]/form/button"))
     )
     context.driver.execute_script("arguments[0].click();", botao_enviar)
+    @then(u'Então fecho o navegador')
+    def step_saio_do_navegador(context):
+        time.sleep(8)
+        context.driver.quit()
+
+        
